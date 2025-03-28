@@ -1585,7 +1585,7 @@
 		<i class=alert></i>
 		<div class=bulk>
 			<a href=# class=view-about>About</a>
-			<a href=https://github.com/3Samourai/Nullboard/blob/main/LICENSE>License</a>
+			<a href=https://github.com/3Samourai/nullboard/blob/master/LICENSE>License</a>
 			<a href=https://github.com/3Samourai/Nullboard target=_blank>Github</a>
 		</div>
 	</div>
@@ -4249,14 +4249,6 @@
 	}
 
 	function haveOverlay()
-	{
-		return $('.overlay').css('display') != 'none';
-	}
-
-	/*
-	 *	license popup
-	 */
-	function formatLicense()
 	{
 		var text = document.head.childNodes[1].nodeValue;
 		var pos = text.search('LICENSE');
