@@ -105,12 +105,6 @@ The [2-clause BSD license](https://opensource.org/licenses/BSD-2-Clause/) with t
 
 That is, you can use, change and re-distribute it for as long as you don't try and sell it.
 
-## Updates
-
-Primary feed is through [@nullboard](https://twitter.com/nullboard) on Twitter.
-
-The changelog is here => https://nullboard.io/changes
-
 ## Recent Enhancements
 
 We've made several improvements to Nullboard:
