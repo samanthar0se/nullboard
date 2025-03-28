@@ -48,7 +48,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nullboard</title>
-  <link rel="icon" href="extras/favicon-16.png"/>
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <!-- PWA meta tags -->
+  <meta name="description" content="Minimalist locally-stored kanban board">
+  <meta name="theme-color" content="#f8f9fb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Nullboard">
+  <link rel="apple-touch-icon" href="images/icons/icon-pwa.png">
+  <link rel="manifest" href="manifest.json">
   <style>
 
 	/***/
@@ -127,6 +137,21 @@
 	}
 
 	/***/
+	@font-face {
+		font-family: 'f-monospace';
+		font-weight: 400;
+		font-style: normal;
+		src: local('Consolas'), local('Monaco'), local('Menlo'), local('Courier New'), monospace;
+	}
+
+	@font-face {
+		font-family: 'f-monospace';
+		font-weight: 500;
+		font-style: normal;
+		src: local('Consolas Bold'), local('Monaco Bold'), local('Menlo Bold'), local('Courier New Bold'), monospace;
+	}
+
+	/***/
 	html {
 		--ff: f-barlow, sans-serif;
 
@@ -174,6 +199,14 @@
 		--fs: 12;
 		--fs-head: 13;
 		--lw: calc(20 * var(--fs) + 47);  /* .list width */
+	}
+
+	/***/
+	html.f-monospace {
+		--ff: f-monospace, monospace;
+		--fs: 11;
+		--fs-head: 12.5;
+		--lw: calc(20 * var(--fs) + 55);  /* .list width */
 	}
 
 	/***/
@@ -1350,7 +1383,7 @@
 	}
 
 	.theme-dark .board .menu a:hover {
-		color: #fc4;
+		color: #007AFF;
 	}
 
 	.theme-dark .board .menu a.warn:hover,
@@ -1429,7 +1462,7 @@
 	}
 
 	.theme-dark .board .note .ops .bulk a:hover {
-		color: #fc2;
+		color: #007AFF;
 	}
 
 	/***/
@@ -1442,7 +1475,7 @@
 	.theme-dark .note-dragster {
 		box-shadow: 0px 1px 4px #000;
 		background: linear-gradient(#242426, #202022);
-		outline: 1px solid #fc28;
+		outline: 1px solid #007AFF;
 	}
 
 	.theme-dark .note-dragster a {
@@ -1476,7 +1509,7 @@
 	}
 
 	.theme-dark .logo a:hover {
-		color: #fc2;
+		color: #007AFF;
 	}
 
 	.theme-dark .logo > a:hover {
@@ -1494,7 +1527,7 @@
 	}
 
 	.theme-dark .config a:hover {
-		color: #fc2;
+		color: #007AFF;
 	}
 
 	.theme-dark .config .bulk .boards {
@@ -1503,7 +1536,7 @@
 	}
 
 	.theme-dark .config .bulk .boards a.load-board.active {
-		color: #fc2;
+		color: #007AFF;
 	}
 
 	.theme-dark .config .bulk .boards a.load-board.active:hover {
@@ -1517,7 +1550,7 @@
 	.theme-dark.fs-set .config .bulk .ui-prefs .f-prefs tr.ui-fs td.val,
 	.theme-dark.lh-set .config .bulk .ui-prefs .f-prefs tr.ui-lh td.val,
 	.theme-dark.lw-set .config .bulk .ui-prefs .f-prefs tr.ui-lw td.val {
-		color: #fc2;
+		color: #007AFF;
 	}
 
 	.theme-dark .config a.switch-theme i {
@@ -1538,7 +1571,7 @@
 	.theme-dark .load-dragster {
 		background: #09090A;
 		box-shadow: 0px 2px 4px #000;
-		outline: 1px solid #fc2a;
+		outline: 1px solid #007AFF;
 		color: #ddd;
 	}
 
@@ -1581,6 +1614,7 @@
 					<a href="#" class="switch-font" font="open-sans">Use Open Sans</a>
 					<a href="#" class="switch-font" font="segoe-ui">Use Segoe UI</a>
 					<a href="#" class="switch-font" font="maven-pro">Use Maven Pro</a>
+					<a href="#" class="switch-font" font="monospace">Use Monospace</a>
 
 					<div class='f-prefs break'>
 						<table>
@@ -1730,11 +1764,11 @@
 		this.verSeen      = null;           // latest codeVersion they saw the changelog for
 
 		this.maxUndo      = 50;             // board revisions to keep
-		this.fontName     = null;           // font-family
-		this.fontSize     = null;           // font-size
+		this.fontName     = 'ibm-plex';     // font-family
+		this.fontSize     = 14;             // font-size
 		this.lineHeight   = null;           // line-height
 		this.listWidth    = null;           // list-width
-		this.theme        = null;           // default or 'dark'
+		this.theme        = 'dark';         // default or 'dark'
 
 		this.fileLinks    = false;          // mark up `foo` as <a href=file:///foo>...</a>
 
@@ -4450,10 +4484,12 @@
 				selectFont(null);
 			}
 
-			selectFont(conf.fontName || 'barlow');
+			selectFont(conf.fontName || 'ibm-plex');
 
 			if (conf.fontSize)
 				setFontSize(conf.fontSize);
+			else
+				setFontSize(14);  // Set default font size to 14
 
 			if (conf.lineHeight)
 				setLineHeight(conf.lineHeight);
@@ -5156,6 +5192,8 @@
 	//
 	if (conf.theme)
 		$('html').addClass('theme-' + conf.theme);
+	else
+		$('html').addClass('theme-dark');  // Set default theme to dark
 
 	if (conf.board)
 		openBoard(conf.board);
@@ -5181,5 +5219,22 @@
 	setupListScrolling();
 
 </script>
+
+<!-- PWA Service Worker Registration -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('Service Worker registered successfully with scope:', registration.scope);
+      })
+      .catch(error => {
+        console.error('Service Worker registration failed:', error);
+      });
+  });
+}
+</script>
+
+</body>
 
 </html>

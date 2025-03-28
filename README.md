@@ -1,4 +1,8 @@
-# Nullboard
+# Nullboard PWA
+
+This is a fork of the original [Nullboard](https://github.com/apankrat/nullboard) project with added Progressive Web App (PWA) capabilities and Modernized UI.
+
+Original project by Alexander Pankratov / [swapped.ch](https://github.com/apankrat)
 
 Nullboard is a minimalist take on a kanban board / a task list manager, designed to be compact, readable and quick in use.
 
@@ -7,6 +11,16 @@ https://nullboard.io/preview
 ![Nullboard](images/nullboard-example-alt.png)
 
 The name also happens to abbreviate to [NB](https://en.wikipedia.org/wiki/Nota_bene), which I think is a nice touch.
+
+## What's Different in This Fork?
+
+This fork enhances the original Nullboard by adding:
+- Progressive Web App support for installation on mobile and desktop
+- Offline functionality via service worker
+- Improved theme styling and cross-browser compatibility
+- Updated accent colors and visual improvements
+
+See the [Recent Enhancements](#recent-enhancements) section for complete details.
 
 ## Dead simple
 
@@ -17,14 +31,7 @@ The name also happens to abbreviate to [NB](https://en.wikipedia.org/wiki/Nota_b
 
 * All data is stored locally, for now using [localStorage](https://developer.mozilla.org/en/docs/Web/API/Window/localStorage).
 * The data can be exported to- or imported from a plain text file in a simple JSON format.
-* The data can also be automatically backed up to a local disk with the help of:
-  * [Nullboard Agent](https://nullboard.io/backups) - a native Windows app
-  * [Nullboard Agent Express Port](https://github.com/justinpchang/nullboard-agent-express) - an express.js-based portable app
-  * [nbagent](https://github.com/luismedel/nbagent) - a version for Unix systems, in Python
 
-## Beta
-
-Still very much in beta. Caveat emptor and all that.
 
 ## UI & UX
 
@@ -50,7 +57,7 @@ Longer notes can be collapsed to show just the first line, for even more compact
 
 ![Collapsed notes](images/nullboard-collapsed-notes.gif)
 
-The default font is [Barlow](https://tribby.com/fonts/barlow/) - it's both narrow *and* still very legible. Absolutely fantastic design!
+The default font is IBM Plex
 
 ![Barlow speciment](images/barlow-specimen.png)
 
@@ -87,37 +94,10 @@ Also:
 ## Caveats
 
 * Written for desktop and keyboard/mouse use
-* Essentially untested on mobile devices and against tap/touch input
-* Works in Firefox, tested in Chrome, should work in Safari and may work in Edge (or what it's called now)
+* Works in Firefox,Chrome, Edge and Brave
 * Uses localStorage for storing boards/lists/notes, so be careful around [clearing your cache](https://stackoverflow.com/questions/9948284/how-persistent-is-localstorage)
 
 You spot a bug, file an issue.
-
-## Dockerized version
-
-See [this fork](https://github.com/rsoper/nullboard).
-
-## Background
-
-Nullboard is something that handles ToDo lists in the way that works really well. For *me* that is.
-
-Tried a lot of options, some were almost *it*, but none was 100%.
-
-**Trello** wasn't bad, but never was comfortable with the idea of storing my data in cloud without any actual need.
-
-**Wekan** looked promising, but ultimately too heavy and had no offline usage support or a local storage option.
-
-**Things** was beautiful, but not the right tool for the job.
-
-**Inkscape** - I kid you not - with a laundry list of text items was actually OK, but didn't scale well.
-
-Ditto for the plain **text files**.
-
-Pieces of **paper** were almost there, but rearranging items can be quite a hassle.
-
-So finally got annoyed enough to sit down and write exactly what I wanted.
-
-And, voilà, Nullboard came out  =>  https://nullboard.io/preview
 
 ## License
 
@@ -130,3 +110,26 @@ That is, you can use, change and re-distribute it for as long as you don't try a
 Primary feed is through [@nullboard](https://twitter.com/nullboard) on Twitter.
 
 The changelog is here => https://nullboard.io/changes
+
+## Recent Enhancements
+
+We've made several improvements to Nullboard:
+
+* **UI Enhancements**
+  * Changed default theme to dark mode for better eye comfort
+  * Increased default font size to 14px for improved readability
+  * Added a monospace font option for code and structured content
+  * Set IBM Plex as the default font for a more modern look
+  * Updated accent colors to Apple blue (#007AFF) for better contrast
+
+* **Progressive Web App Support**
+  * Added PWA capabilities for installation on mobile devices and desktops
+  * Created manifest.json file with app information and configuration
+  * Implemented service worker (sw.js) for offline functionality and caching
+  * Added appropriate meta tags for iOS and Android compatibility 
+  * Fixed CSS syntax errors in theme styling for better cross-browser support
+  * Added service worker registration script for PWA initialization
+  * Created app icon placeholders in multiple required sizes (16x16, 192x192, 512x512)
+  * Configured offline caching for essential files and assets
+
+These changes enhance usability while maintaining the minimalist design philosophy of Nullboard.
