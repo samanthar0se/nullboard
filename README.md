@@ -2,11 +2,11 @@
 
 This is a fork of the original [Nullboard](https://github.com/apankrat/nullboard) project with added Progressive Web App (PWA) capabilities and Modernized UI.
 
-Original project by Alexander Pankratov / [swapped.ch](https://github.com/apankrat)
+Original project by Alexander Pankratov / [apankrat](https://github.com/apankrat)
 
 Nullboard is a minimalist take on a kanban board / a task list manager, designed to be compact, readable and quick in use.
 
-https://nullboard.io/preview
+https://3samourai.github.io/nullboard/
 
 ![Nullboard](images/nullboard-example-alt.png)
 
