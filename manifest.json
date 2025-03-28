@@ -2,7 +2,7 @@
   "name": "Nullboard",
   "short_name": "Nullboard",
   "description": "Minimalist locally-stored kanban board",
-  "start_url": "/",
+  "start_url": "/nullboard/",
   "display": "standalone",
   "background_color": "#f8f9fb",
   "theme_color": "#f8f9fb",
