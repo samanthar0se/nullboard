@@ -123,7 +123,7 @@ We've made several improvements to Nullboard:
   * Added appropriate meta tags for iOS and Android compatibility 
   * Fixed CSS syntax errors in theme styling for better cross-browser support
   * Added service worker registration script for PWA initialization
-  * Created app icon placeholders in multiple required sizes (16x16, 192x192, 512x512)
+  * Created app icon in multiple required sizes (16x16, 192x192, 512x512)
   * Configured offline caching for essential files and assets
 
 These changes enhance usability while maintaining the minimalist design philosophy of Nullboard.
