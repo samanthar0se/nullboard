@@ -2801,6 +2801,23 @@
 				return;
 
 			/*
+			 *	auto-scroll if near window edges
+			 */
+			if (this.$drag) {
+				const scrollThreshold = 50; // Pixels from edge to trigger scroll
+				const scrollAmount = 10;    // Pixels to scroll by
+
+				const dragRect = this.$drag[0].getBoundingClientRect();
+				const windowHeight = window.innerHeight;
+
+				if (dragRect.top < scrollThreshold) {
+					window.scrollBy(0, -scrollAmount);
+				} else if (dragRect.bottom > windowHeight - scrollThreshold) {
+					window.scrollBy(0, scrollAmount);
+				}
+			}
+
+			/*
 			 *	see if a swap is in order
 			 */
 			var pos = $drag.offset();
