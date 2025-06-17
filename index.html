@@ -2994,6 +2994,15 @@
 					drag.adjustDrag();
 				});
 			}
+
+			/*
+			 *  Jump to the bottom of the page when the user is dragging and
+			 *  holding the Shift key while the pointer is over a list. This
+			 *  makes it easy to quickly move notes to the end of long boards.
+			 */
+			if (drag.mouseEv && drag.mouseEv.shiftKey && targetList) {
+				window.scrollTo(0, document.body.scrollHeight);
+			}
 		}
 
 		this.onMouseMove = function(ev)
@@ -4265,9 +4274,31 @@
 		});
 	}
 
-	function haveOverlay()
+	function isOverlayVisible()
 	{
-		var text = document.head.childNodes[1].nodeValue;
+		return $('.overlay').css('display') == 'flex';
+	}
+
+	function formatLicense()
+	{
+		var text = '';
+		var nodes = document.head.childNodes;
+
+		for (var i=0; i<nodes.length; i++)
+		{
+			if (nodes[i].nodeType != 8) // a comment
+				continue;
+
+			if (nodes[i].nodeValue.search('LICENSE') > -1)
+			{
+				text = nodes[i].nodeValue;
+				break;
+			}
+		}
+
+		if (!text)
+			return '';
+
 		var pos = text.search('LICENSE');
 		var qos = text.search('Software:');
 		var bulk;
@@ -5099,7 +5130,7 @@
 	});
 
 	$(window).keydown(function(ev){
-		if (haveOverlay() && ev.keyCode == 27)
+		if (ev.keyCode == 27 && isOverlayVisible())
 			hideOverlay();
 	});
 
@@ -5111,7 +5142,6 @@
 	});
 
 	$('.view-license').click(function(){
-
 		var $div = $('tt .license').clone();
 		$div.html(formatLicense());
 		showOverlay($div);
