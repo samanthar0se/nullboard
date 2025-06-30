@@ -67,7 +67,7 @@
 		font-family: 'f-barlow';
 		font-weight: 400;
 		font-style: normal;
-		src: url('nullboard/extras/Barlow-Regular.woff') format('woff');
+		src: url('nullboard/extras/Barlow-Light.woff') format('woff');
 	}
 
 	@font-face {
@@ -82,7 +82,7 @@
 		font-family: 'f-ibm-plex';
 		font-weight: 400;
 		font-style: normal;
-		src: url('nullboard/extras/IBMPlexSans-Regular.woff') format('woff');
+		src: url('nullboard/extras/IBMPlexSans-Light.woff') format('woff');
 	}
 
 	@font-face {
@@ -5228,8 +5228,6 @@
 	//
 	if (conf.theme)
 		$('html').addClass('theme-' + conf.theme);
-	else
-		$('html').addClass('theme-dark');  // Set default theme to dark
 
 	if (conf.board)
 		openBoard(conf.board);
